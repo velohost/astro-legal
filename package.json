@@ -1,0 +1,47 @@
+{
+  "name": "astro-legal",
+  "version": "1.0.0",
+  "description": "Generate world-class legal policy Astro pages from a single config file",
+  "homepage": "https://velohost.co.uk/plugins/astro-legal/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/velohost/astro-legal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/velohost/astro-legal/issues"
+  },
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "withastro",
+    "astro",
+    "astro-integration",
+    "legal",
+    "policies",
+    "privacy",
+    "csam",
+    "law-enforcement",
+    "compliance",
+    "build-time",
+    "static-site"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "peerDependencies": {
+    "astro": "^4.0.0 || ^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "typescript": "^5.0.0"
+  }
+}
