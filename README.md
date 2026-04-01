@@ -191,13 +191,13 @@ Your dev server will continue normally.
 
 ## License
 
-MIT © Velohost
+MIT © Velohost UK Limited
 
 ---
 
 ## Author
 
-Built and maintained by **Velohost**  
+Built and maintained by **Velohost UK Limited**  
 https://velohost.co.uk/
 
 Project homepage:  
