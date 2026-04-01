@@ -25,7 +25,8 @@ On `astro dev`, the plugin:
 - Generates `src/generated/legal.ts` (the `@legal` runtime module)
 - Scaffolds enabled policy routes exactly once
 - Augments `src/env.d.ts` with `@legal` types
-- Restarts dev server if new routes were created
+- Watches `config-files/legal.config.json` and generates new routes when you
+  enable them
 
 ---
 
@@ -49,15 +50,21 @@ npm install astro-legal
 
 ## Setup
 
-You can either edit `config-files/legal.config.json` manually, or generate the
-starter file with:
+Run the interactive initializer:
 
 ```bash
 npx astro-legal init
 ```
 
-Use `npx astro-legal init --force` only if you want to overwrite the canonical
-config file with the bundled defaults.
+It will:
+
+- Write `config-files/legal.config.json`
+- Patch `astro.config.*` with the integration when it finds a standard Astro config file
+
+After that, edit `config-files/legal.config.json` manually to turn on the
+policies you want and fill in the organisation, contact, and layout values.
+Saving the file during `astro dev` will create any newly enabled policy routes
+without forcing a restart.
 
 ---
 

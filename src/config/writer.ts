@@ -240,3 +240,13 @@ export function writeDefaultLegalConfig(force = false): boolean {
     throw error;
   }
 }
+
+export function buildLegalConfig(policies: Record<string, boolean>): LegalConfig {
+  return {
+    ...DEFAULT_CONFIG,
+    policies: {
+      ...DEFAULT_CONFIG.policies,
+      ...policies,
+    },
+  };
+}

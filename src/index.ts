@@ -148,18 +148,12 @@ export default function astroLegal(): AstroIntegration {
             });
 
             /**
-             * Astro cannot hot-register new routes.
-             * Restart exactly once if new ones were created.
+             * Astro v6 can discover new routes without forcing a restart.
              */
             if (createdRoutes === true) {
               console.log(
-                "[astro-legal] new routes detected — restarting dev server"
+                "[astro-legal] new routes detected — continuing without restart"
               );
-
-              setTimeout(() => {
-                server.restart();
-              }, 50);
-
               return;
             }
 
