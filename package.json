@@ -1,6 +1,6 @@
 {
   "name": "astro-legal",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Generate world-class legal policy Astro pages from a single config file",
   "homepage": "https://velohost.co.uk/plugins/astro-legal/",
   "repository": {
@@ -32,11 +32,15 @@
       "default": "./dist/index.js"
     }
   },
+  "bin": {
+    "astro-legal": "./dist/cli.js"
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "init": "node ./dist/cli.js init"
   },
   "peerDependencies": {
     "astro": "^4.0.0 || ^5.0.0 || ^6.0.0"

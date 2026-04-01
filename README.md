@@ -47,6 +47,18 @@ If configuration is invalid or disabled, **no policies are generated**.
 npm install astro-legal
 ```
 
+## Setup
+
+You can either edit `config-files/legal.config.json` manually, or generate the
+starter file with:
+
+```bash
+npx astro-legal init
+```
+
+Use `npx astro-legal init --force` only if you want to overwrite the canonical
+config file with the bundled defaults.
+
 ---
 
 ## Usage

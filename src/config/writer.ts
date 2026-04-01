@@ -43,7 +43,7 @@ const INITIAL_EFFECTIVE_DATE = new Date()
  * - The default layout path is a placeholder
  * - Users MUST point this at a real layout before use
  */
-const DEFAULT_CONFIG: LegalConfig = {
+export const DEFAULT_CONFIG: LegalConfig = {
   /**
    * Master enable switch.
    *
@@ -188,23 +188,13 @@ const DEFAULT_CONFIG: LegalConfig = {
  */
 export function ensureLegalConfigFile(): void {
   try {
-    fs.mkdirSync(CONFIG_DIR, { recursive: true });
+    const created = writeDefaultLegalConfig();
 
-    // Canonical config already exists
-    if (fs.existsSync(NEW_CONFIG_PATH)) {
-      return;
+    if (created) {
+      console.log(
+        "[astro-legal] created config-files/legal.config.json"
+      );
     }
-
-    // Create default config (one-time only)
-    fs.writeFileSync(
-      NEW_CONFIG_PATH,
-      JSON.stringify(DEFAULT_CONFIG, null, 2),
-      { encoding: "utf-8", flag: "wx" }
-    );
-
-    console.log(
-      "[astro-legal] created config-files/legal.config.json"
-    );
   } catch {
     /**
      * HARD FAIL-SAFE
@@ -215,5 +205,38 @@ export function ensureLegalConfigFile(): void {
      *
      * If config creation fails, the reader fails closed.
      */
+  }
+}
+
+export function writeDefaultLegalConfig(force = false): boolean {
+  fs.mkdirSync(CONFIG_DIR, { recursive: true });
+
+  try {
+    if (!force) {
+      fs.writeFileSync(
+        NEW_CONFIG_PATH,
+        JSON.stringify(DEFAULT_CONFIG, null, 2),
+        { encoding: "utf-8", flag: "wx" }
+      );
+    } else {
+      fs.writeFileSync(
+        NEW_CONFIG_PATH,
+        JSON.stringify(DEFAULT_CONFIG, null, 2),
+        { encoding: "utf-8", flag: "w" }
+      );
+    }
+
+    return true;
+  } catch (error) {
+    if (
+      !force &&
+      error instanceof Error &&
+      "code" in error &&
+      error.code === "EEXIST"
+    ) {
+      return false;
+    }
+
+    throw error;
   }
 }
